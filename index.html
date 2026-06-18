@@ -286,7 +286,7 @@
             justify-content: center;
         }
 
-        /* ----- LOGIN / SIGNUP VIEW ----- */
+        /* ----- AUTH VIEW ----- */
         .auth-view {
             max-width: 480px;
             margin: 0 auto;
@@ -661,7 +661,7 @@
             margin-bottom: 4px;
         }
 
-        /* ----- ADMIN PANEL (hidden) ----- */
+        /* ----- ADMIN PANEL ----- */
         .admin-view {
             padding: 0;
         }
@@ -759,6 +759,115 @@
             margin-bottom: 4px;
         }
 
+        /* ----- MODALS (generic) ----- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.40);
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .modal-box {
+            background: #fff;
+            border-radius: var(--radius);
+            max-width: 520px;
+            width: 100%;
+            padding: 32px 36px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.30);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-box h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        .modal-box .modal-sub {
+            color: var(--gray-500);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .modal-box .form-group {
+            margin-bottom: 16px;
+        }
+        .modal-box .form-group label {
+            display: block;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            margin-bottom: 4px;
+        }
+        .modal-box .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .modal-box .modal-actions button {
+            flex: 1;
+            min-width: 100px;
+        }
+
+        /* ----- CRYPTO SELECTOR ----- */
+        .crypto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 12px;
+            margin: 16px 0 20px;
+        }
+        .crypto-option {
+            background: var(--gray-50);
+            border: 2px solid var(--gray-200);
+            border-radius: 10px;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .crypto-option:hover {
+            border-color: var(--accent-light);
+            background: #fff;
+        }
+        .crypto-option.selected {
+            border-color: var(--accent);
+            background: #e8f0fe;
+            box-shadow: 0 0 0 3px rgba(45, 127, 193, 0.15);
+        }
+        .crypto-option .crypto-logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+        .crypto-option .crypto-name {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .crypto-option .crypto-address {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            word-break: break-all;
+            margin-top: 4px;
+            background: var(--gray-100);
+            padding: 4px 6px;
+            border-radius: 4px;
+            display: none;
+        }
+        .crypto-option.selected .crypto-address {
+            display: block;
+        }
+
         /* ----- RESPONSIVE ----- */
         @media (max-width: 768px) {
             .view {
@@ -813,6 +922,9 @@
                 flex-direction: column;
                 gap: 0;
             }
+            .crypto-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         @media (max-width: 480px) {
             .stats-grid {
@@ -832,51 +944,27 @@
             .app-header .user-badge .name {
                 display: none;
             }
+            .crypto-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .modal-box {
+                padding: 24px 20px;
+            }
         }
 
-        /* utility */
-        .mt-8 {
-            margin-top: 8px;
-        }
-        .mt-16 {
-            margin-top: 16px;
-        }
-        .mt-24 {
-            margin-top: 24px;
-        }
-        .mb-16 {
-            margin-bottom: 16px;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .text-muted {
-            color: var(--gray-500);
-            font-size: 0.85rem;
-        }
-        .flex {
-            display: flex;
-        }
-        .flex-center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .gap-8 {
-            gap: 8px;
-        }
-        .gap-12 {
-            gap: 12px;
-        }
-        .gap-16 {
-            gap: 16px;
-        }
-        .hidden {
-            display: none !important;
-        }
-        .w-full {
-            width: 100%;
-        }
+        .mt-8 { margin-top: 8px; }
+        .mt-16 { margin-top: 16px; }
+        .mt-24 { margin-top: 24px; }
+        .mb-16 { margin-bottom: 16px; }
+        .text-center { text-align: center; }
+        .text-muted { color: var(--gray-500); font-size: 0.85rem; }
+        .flex { display: flex; }
+        .flex-center { display: flex; align-items: center; justify-content: center; }
+        .gap-8 { gap: 8px; }
+        .gap-12 { gap: 12px; }
+        .gap-16 { gap: 16px; }
+        .hidden { display: none !important; }
+        .w-full { width: 100%; }
     </style>
 </head>
 <body>
@@ -910,7 +998,6 @@
                 <div class="success-msg" id="authSuccess"></div>
 
                 <form id="authForm" autocomplete="off">
-                    <!-- full name (signup only) -->
                     <div class="form-group hidden" id="nameGroup">
                         <label for="authName">Full name</label>
                         <input type="text" id="authName" placeholder="John Doe" />
@@ -931,7 +1018,7 @@
                     <button type="button" id="authToggleBtn">Create one</button>
                 </div>
 
-                <!-- hidden admin entry (double-click logo) -->
+                <!-- hidden admin entry (triple-click dots) -->
                 <div style="margin-top:32px;text-align:center;font-size:0.7rem;color:var(--gray-300);">
                     <span id="adminTrigger" style="cursor:default;user-select:none;">&bull; &bull; &bull;</span>
                 </div>
@@ -980,7 +1067,6 @@
                         between buyers and sellers. Funds are held in escrow until both parties confirm
                         satisfactory completion of the transaction.
                     </p>
-
                     <h4>2. Buyer Obligations</h4>
                     <ul>
                         <li>You must provide accurate and complete information for each transaction.</li>
@@ -988,33 +1074,28 @@
                         <li>You have the right to inspect goods upon delivery and release funds only when satisfied.</li>
                         <li>Disputes must be raised within 14 days of delivery confirmation.</li>
                     </ul>
-
                     <h4>3. Fees &amp; Charges</h4>
                     <p>
                         A service fee of 2.9% + $0.30 per transaction is applied to the buyer at the time of funding.
                         All fees are non-refundable once the escrow is funded.
                     </p>
-
                     <h4>4. Dispute Resolution</h4>
                     <p>
                         In the event of a dispute, both parties agree to engage in good-faith mediation.
                         If unresolved, the matter will be settled by binding arbitration in accordance with
                         the rules of the American Arbitration Association.
                     </p>
-
                     <h4>5. Privacy &amp; Data</h4>
                     <p>
                         Your personal data is collected and stored in accordance with our Privacy Policy.
                         We do not share your information with third parties except as required by law.
                     </p>
-
                     <h4>6. Limitation of Liability</h4>
                     <p>
                         Quick Trade Escrow is not liable for any indirect, incidental, or consequential damages
                         arising from the use of our services. Our total liability is limited to the amount of
                         fees paid by you in the preceding 12 months.
                     </p>
-
                     <h4>7. Governing Law</h4>
                     <p>
                         These terms are governed by the laws of the State of Delaware, without regard to
@@ -1176,12 +1257,12 @@
         </div>
 
         <!-- ============================================================ -->
-        <!-- hidden: new escrow modal (simple inline)                      -->
+        <!-- MODAL: New Escrow                                             -->
         <!-- ============================================================ -->
-        <div id="newEscrowModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.40);align-items:center;justify-content:center;z-index:999;padding:20px;">
-            <div style="background:#fff;border-radius:var(--radius);max-width:480px;width:100%;padding:32px 36px;box-shadow:0 20px 60px rgba(0,0,0,0.30);">
-                <h3 style="font-size:1.2rem;font-weight:700;color:var(--primary);margin-bottom:4px;">New Escrow</h3>
-                <p class="text-muted" style="margin-bottom:20px;">Create a new escrow transaction as a buyer.</p>
+        <div class="modal-overlay" id="newEscrowModal">
+            <div class="modal-box">
+                <h3>New Escrow</h3>
+                <p class="modal-sub">Create a new escrow transaction as a buyer.</p>
                 <form id="newEscrowForm">
                     <div class="form-group">
                         <label for="escrowItem">Item / Description</label>
@@ -1195,11 +1276,73 @@
                         <label for="escrowAmount">Amount (USD)</label>
                         <input type="number" id="escrowAmount" placeholder="0.00" min="0.01" step="0.01" required />
                     </div>
-                    <div style="display:flex;gap:12px;margin-top:8px;">
-                        <button type="button" class="btn-secondary" style="flex:1;" id="modalCancelBtn">Cancel</button>
-                        <button type="submit" class="btn-primary" style="flex:2;">Create Escrow</button>
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" id="modalCancelBtn">Cancel</button>
+                        <button type="submit" class="btn-primary">Create Escrow</button>
                     </div>
                 </form>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODAL: Fund Escrow (Crypto)                                   -->
+        <!-- ============================================================ -->
+        <div class="modal-overlay" id="fundModal">
+            <div class="modal-box">
+                <h3>Fund Escrow</h3>
+                <p class="modal-sub" id="fundModalSub">Select a cryptocurrency to fund this escrow.</p>
+
+                <div style="background:var(--gray-50);padding:12px 16px;border-radius:8px;margin-bottom:16px;">
+                    <div style="display:flex;justify-content:space-between;font-size:0.9rem;">
+                        <span><strong>Item:</strong> <span id="fundItemName">—</span></span>
+                        <span><strong>Amount:</strong> <span id="fundAmount">$0.00</span></span>
+                    </div>
+                    <div style="font-size:0.8rem;color:var(--gray-500);margin-top:4px;">
+                        Escrow ID: <span id="fundTxId">—</span>
+                    </div>
+                </div>
+
+                <div class="crypto-grid" id="cryptoGrid">
+                    <!-- BTC -->
+                    <div class="crypto-option" data-crypto="BTC" data-address="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">
+                        <span class="crypto-logo">₿</span>
+                        <span class="crypto-name">BTC</span>
+                        <span class="crypto-address">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span>
+                    </div>
+                    <!-- LTC -->
+                    <div class="crypto-option" data-crypto="LTC" data-address="LbTjMGN7gELw4KbeyQf6cTCq859hD18guE">
+                        <span class="crypto-logo">Ł</span>
+                        <span class="crypto-name">LTC</span>
+                        <span class="crypto-address">LbTjMGN7gELw4KbeyQf6cTCq859hD18guE</span>
+                    </div>
+                    <!-- ETH -->
+                    <div class="crypto-option" data-crypto="ETH" data-address="0x742d35Cc6634C0532925a3b844Bc454e4438f44e">
+                        <span class="crypto-logo">Ξ</span>
+                        <span class="crypto-name">ETH</span>
+                        <span class="crypto-address">0x742d35Cc6634C0532925a3b844Bc454e4438f44e</span>
+                    </div>
+                    <!-- SOL -->
+                    <div class="crypto-option" data-crypto="SOL" data-address="7h8K7f8D6s4Zv3Wg1X2y3u4v5w6x7y8z9A0B1C2D">
+                        <span class="crypto-logo">◎</span>
+                        <span class="crypto-name">SOL</span>
+                        <span class="crypto-address">7h8K7f8D6s4Zv3Wg1X2y3u4v5w6x7y8z9A0B1C2D</span>
+                    </div>
+                    <!-- USDT (TRC20) -->
+                    <div class="crypto-option" data-crypto="USDT" data-address="TQm9N3Z1X2y3u4v5w6x7y8z9A0B1C2D3E4F5">
+                        <span class="crypto-logo">₮</span>
+                        <span class="crypto-name">USDT</span>
+                        <span class="crypto-address" style="font-size:0.6rem;">TQm9N3Z1X2y3u4v5w6x7y8z9A0B1C2D3E4F5</span>
+                    </div>
+                </div>
+
+                <div id="fundSelectedInfo" style="margin:12px 0 16px;font-size:0.85rem;color:var(--gray-600);">
+                    <span id="fundSelectedLabel">No crypto selected</span>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" id="fundCancelBtn">Cancel</button>
+                    <button type="button" class="btn-success" id="fundConfirmBtn" disabled>Confirm Payment</button>
+                </div>
             </div>
         </div>
 
@@ -1220,7 +1363,6 @@
                     const raw = localStorage.getItem(STORE_KEY);
                     if (raw) {
                         const parsed = JSON.parse(raw);
-                        // ensure arrays exist
                         if (!parsed.users) parsed.users = [];
                         if (!parsed.transactions) parsed.transactions = [];
                         if (!parsed.sessions) parsed.sessions = [];
@@ -1234,7 +1376,6 @@
                 localStorage.setItem(STORE_KEY, JSON.stringify(store));
             }
 
-            // Seed with a demo user if empty
             function seedStore() {
                 const store = getStore();
                 if (store.users.length === 0) {
@@ -1254,7 +1395,6 @@
                         role: 'seller',
                         joined: new Date().toISOString()
                     });
-                    // some demo transactions
                     const now = new Date();
                     store.transactions.push({
                         id: 'tx1',
@@ -1304,8 +1444,9 @@
             // =================================================================
             // STATE
             // =================================================================
-            let currentUser = null; // { id, name, email, password, role, joined }
+            let currentUser = null;
             let currentView = 'auth';
+            let fundingTxId = null; // used in fund modal
 
             // DOM refs
             const $ = (sel) => document.querySelector(sel);
@@ -1339,11 +1480,6 @@
                 return 'id_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
             }
 
-            function getTransactionsForUser(email) {
-                const store = getStore();
-                return store.transactions.filter(t => t.buyer === email || t.seller === email);
-            }
-
             function getBuyerTransactions(email) {
                 const store = getStore();
                 return store.transactions.filter(t => t.buyer === email);
@@ -1357,10 +1493,8 @@
                     views[key].classList.toggle('active', key === name);
                 });
                 currentView = name;
-                // show/hide header
                 const hideHeader = (name === 'auth' || name === 'admin');
                 header.style.display = hideHeader ? 'none' : 'flex';
-                // if admin, hide header anyway
                 if (name === 'admin') header.style.display = 'none';
             }
 
@@ -1434,13 +1568,11 @@
                 const store = getStore();
 
                 if (isLoginMode) {
-                    // LOGIN
                     const user = store.users.find(u => u.email === email && u.password === password);
                     if (!user) {
                         showAuthError('Invalid email or password.');
                         return;
                     }
-                    // record session
                     store.sessions.push({
                         userId: user.id,
                         email: user.email,
@@ -1454,7 +1586,6 @@
                         afterLogin(user);
                     }, 400);
                 } else {
-                    // SIGNUP
                     if (store.users.find(u => u.email === email)) {
                         showAuthError('An account with this email already exists.');
                         return;
@@ -1464,7 +1595,7 @@
                         name: name,
                         email: email,
                         password: password,
-                        role: 'none', // will be set later
+                        role: 'none',
                         joined: new Date().toISOString()
                     };
                     store.users.push(newUser);
@@ -1499,14 +1630,11 @@
             // AFTER LOGIN
             // =================================================================
             function afterLogin(user) {
-                // update header
                 $('#userName').textContent = user.name;
                 $('#userAvatar').textContent = user.name.charAt(0).toUpperCase();
 
                 if (user.role && user.role !== 'none') {
-                    // go directly to dashboard or seller
                     if (user.role === 'buyer') {
-                        // check if terms accepted
                         const termsKey = 'terms_accepted_' + user.id;
                         if (localStorage.getItem(termsKey) === 'true') {
                             showBuyerDashboard();
@@ -1530,7 +1658,6 @@
                 card.addEventListener('click', function() {
                     const role = this.dataset.role;
                     if (!currentUser) return;
-                    // update user role
                     const store = getStore();
                     const user = store.users.find(u => u.id === currentUser.id);
                     if (user) {
@@ -1557,7 +1684,6 @@
             });
 
             $('#termsDecline').addEventListener('click', function() {
-                // go back to role selection
                 showView('role');
             });
 
@@ -1575,7 +1701,6 @@
                 const store = getStore();
                 const txs = store.transactions.filter(t => t.buyer === email);
 
-                // stats
                 const active = txs.filter(t => ['pending', 'funded', 'shipped', 'delivered'].includes(t.status));
                 const funded = txs.filter(t => t.status === 'funded');
                 const completed = txs.filter(t => t.status === 'completed');
@@ -1589,7 +1714,6 @@
                 $('#historyCount').textContent = txs.length;
                 $('#dashWelcome').textContent = 'Welcome back, ' + currentUser.name;
 
-                // active escrows table
                 const activeBody = $('#activeEscrowsBody');
                 if (active.length === 0) {
                     activeBody.innerHTML = `
@@ -1619,11 +1743,11 @@
                         </tr>
                     `).join('');
 
-                    // event listeners for action buttons
+                    // Attach event listeners
                     activeBody.querySelectorAll('.fund-btn').forEach(btn => {
                         btn.addEventListener('click', function() {
                             const id = this.dataset.tx;
-                            updateTxStatus(id, 'funded');
+                            openFundModal(id);
                         });
                     });
                     activeBody.querySelectorAll('.deliver-btn').forEach(btn => {
@@ -1640,7 +1764,6 @@
                     });
                 }
 
-                // history table
                 const historyBody = $('#historyBody');
                 const sorted = [...txs].sort((a, b) => new Date(b.created) - new Date(a.created));
                 if (sorted.length === 0) {
@@ -1678,23 +1801,84 @@
             }
 
             // =================================================================
+            // FUND MODAL (CRYPTO)
+            // =================================================================
+            const fundModal = $('#fundModal');
+            const fundCancelBtn = $('#fundCancelBtn');
+            const fundConfirmBtn = $('#fundConfirmBtn');
+            const cryptoOptions = $$('.crypto-option');
+            let selectedCrypto = null;
+
+            function openFundModal(txId) {
+                const store = getStore();
+                const tx = store.transactions.find(t => t.id === txId);
+                if (!tx) return;
+                fundingTxId = txId;
+                $('#fundItemName').textContent = tx.item;
+                $('#fundAmount').textContent = formatCurrency(tx.amount);
+                $('#fundTxId').textContent = tx.id;
+
+                // Reset selection
+                cryptoOptions.forEach(el => el.classList.remove('selected'));
+                selectedCrypto = null;
+                fundConfirmBtn.disabled = true;
+                $('#fundSelectedLabel').textContent = 'No crypto selected';
+
+                fundModal.classList.add('active');
+            }
+
+            function closeFundModal() {
+                fundModal.classList.remove('active');
+                fundingTxId = null;
+                selectedCrypto = null;
+                cryptoOptions.forEach(el => el.classList.remove('selected'));
+                fundConfirmBtn.disabled = true;
+                $('#fundSelectedLabel').textContent = 'No crypto selected';
+            }
+
+            // Crypto selection
+            cryptoOptions.forEach(opt => {
+                opt.addEventListener('click', function() {
+                    cryptoOptions.forEach(el => el.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedCrypto = this.dataset.crypto;
+                    const address = this.dataset.address;
+                    $('#fundSelectedLabel').textContent = `Selected: ${selectedCrypto} — Address: ${address}`;
+                    fundConfirmBtn.disabled = false;
+                });
+            });
+
+            fundCancelBtn.addEventListener('click', closeFundModal);
+            // Click overlay to close
+            fundModal.addEventListener('click', function(e) {
+                if (e.target === this) closeFundModal();
+            });
+
+            fundConfirmBtn.addEventListener('click', function() {
+                if (!fundingTxId || !selectedCrypto) return;
+                // update status to funded
+                updateTxStatus(fundingTxId, 'funded');
+                closeFundModal();
+            });
+
+            // =================================================================
             // NEW ESCROW MODAL
             // =================================================================
-            const modal = $('#newEscrowModal');
+            const newEscrowModal = $('#newEscrowModal');
             const newEscrowForm = $('#newEscrowForm');
 
             $('#newEscrowBtn').addEventListener('click', function() {
-                modal.style.display = 'flex';
+                newEscrowModal.classList.add('active');
             });
 
             $('#modalCancelBtn').addEventListener('click', function() {
-                modal.style.display = 'none';
+                newEscrowModal.classList.remove('active');
                 newEscrowForm.reset();
             });
 
-            modal.addEventListener('click', function(e) {
+            newEscrowModal.addEventListener('click', function(e) {
                 if (e.target === this) {
-                    modal.style.display = 'none';
+                    newEscrowModal.classList.remove('active');
                     newEscrowForm.reset();
                 }
             });
@@ -1722,7 +1906,7 @@
                 };
                 store.transactions.push(tx);
                 saveStore(store);
-                modal.style.display = 'none';
+                newEscrowModal.classList.remove('active');
                 newEscrowForm.reset();
                 renderDashboard();
             });
@@ -1731,7 +1915,6 @@
             // LOGOUT
             // =================================================================
             $('#logoutBtn').addEventListener('click', function() {
-                // record logout session
                 if (currentUser) {
                     const store = getStore();
                     store.sessions.push({
@@ -1743,11 +1926,9 @@
                     saveStore(store);
                 }
                 currentUser = null;
-                // reset auth form
                 authForm.reset();
                 setAuthMode(true);
                 showView('auth');
-                // clear any terms flags? no, keep them.
             });
 
             // =================================================================
@@ -1758,11 +1939,9 @@
             });
 
             // =================================================================
-            // ADMIN PANEL (hidden)
+            // ADMIN PANEL
             // =================================================================
             let adminRevealed = false;
-
-            // Double-click the dots or use secret URL param
             const adminTrigger = $('#adminTrigger');
             let clickCount = 0;
             let clickTimer = null;
@@ -1777,7 +1956,6 @@
                 }
             });
 
-            // Also support ?admin=true URL param
             if (window.location.search.includes('admin=true')) {
                 setTimeout(revealAdmin, 300);
             }
@@ -1793,7 +1971,6 @@
                 const store = getStore();
                 const users = store.users || [];
                 const txs = store.transactions || [];
-                const sessions = store.sessions || [];
 
                 $('#adminTotalUsers').textContent = users.length;
                 $('#adminTotalTx').textContent = txs.length;
@@ -1802,7 +1979,6 @@
                 const totalVolume = txs.filter(t => t.status === 'completed').reduce((s, t) => s + Number(t.amount), 0);
                 $('#adminVolume').textContent = formatCurrency(totalVolume);
 
-                // users table
                 const body = $('#adminUsersBody');
                 if (users.length === 0) {
                     body.innerHTML = `<tr><td colspan="4" class="text-muted text-center" style="padding:24px;">No users registered yet.</td></tr>`;
@@ -1821,7 +1997,6 @@
             function closeAdmin() {
                 adminRevealed = false;
                 if (currentUser) {
-                    // go back to appropriate view
                     if (currentUser.role === 'buyer') {
                         const termsKey = 'terms_accepted_' + currentUser.id;
                         if (localStorage.getItem(termsKey) === 'true') {
@@ -1843,20 +2018,7 @@
             $('#adminCloseBtn2').addEventListener('click', closeAdmin);
 
             // =================================================================
-            // INIT
-            // =================================================================
-            // Check if already logged in from previous session?
-            // For demo, we start fresh at auth.
-            // But we can check localStorage for a "remember me" style? Not needed.
-
-            // Show auth by default
-            showView('auth');
-            setAuthMode(true);
-
-            // If admin param, we already handle above.
-
-            // =================================================================
-            // KEYBOARD SHORTCUT: Ctrl+Shift+A for admin
+            // KEYBOARD SHORTCUT: Ctrl+Shift+A
             // =================================================================
             document.addEventListener('keydown', function(e) {
                 if (e.ctrlKey && e.shiftKey && (e.key === 'a' || e.key === 'A')) {
@@ -1865,9 +2027,15 @@
                 }
             });
 
-            console.log('Quick Trade Escrow — Demo');
-            console.log('Admin panel: double-click the three dots at bottom of login, or Ctrl+Shift+A, or ?admin=true');
-            console.log('Demo credentials: buyer@demo.com / demo123  |  seller@demo.com / demo123');
+            // =================================================================
+            // INIT
+            // =================================================================
+            showView('auth');
+            setAuthMode(true);
+
+            console.log('Quick Trade Escrow — Demo (crypto funding)');
+            console.log('Admin: triple-click dots / Ctrl+Shift+A / ?admin=true');
+            console.log('Demo: buyer@demo.com / demo123  |  seller@demo.com / demo123');
 
         })();
     </script>
